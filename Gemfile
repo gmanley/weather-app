@@ -17,6 +17,12 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Non-default gems
+# HTTP client library with swappable support for backend, e.g. net/http, http-client, etc
+gem 'faraday'
+# Add support for additional functionality such as auto json parsing
+gem 'faraday_middleware'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
