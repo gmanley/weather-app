@@ -23,6 +23,9 @@ gem 'faraday'
 # Add support for additional functionality such as auto json parsing
 gem 'faraday_middleware'
 
+# As the name implies it adds various Geocoding features. In this apps case it takes and address and spits out long lat.
+gem 'geocoder'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 

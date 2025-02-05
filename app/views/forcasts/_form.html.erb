@@ -1,0 +1,5 @@
+<%= form_with(url: '/forcasts') do %>
+  <%= label :address, "Please provide your address" %><br>
+  <%= text_field_tag('forcast[address]', nil, size: 100) %><br>
+  <%= submit_tag("Get forcast") %>
+<% end %>

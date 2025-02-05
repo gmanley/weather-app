@@ -5,11 +5,15 @@ class WeatherService
     # Mixing presention logic a bit with this. Ideally this model object should just represent
     # the data and then there might be a presenter model for the view that does this but this
     # is fine for now.
-    def description_display
-      description.titalize
+    def date_time_display
+      date_time.strftime("%a %I:%M %P")
     end
 
-    # Same as comment above. Also this is hardcoded, as the API call is hardcoded to 'Imperial'
+    def description_display
+      description.titleize
+    end
+
+    # Also this is hardcoded, as the API call is hardcoded to 'Imperial'
     # right now as well. Could be changed down the line to also support metric.
     def temperature_unit
       'F'.freeze

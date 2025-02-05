@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <h1>Forcast</h1>
+  <h2>Current</h2>
+  <%= render 'forcast', forcast: @forcast[:current] %>
+  <h2>Hourly</h2>
+  <% @forcast[:hourly].take(8).each do |hourly_forcast| %>
+    <%= hourly_forcast.date_time_display %>
+    <%= render 'forcast', forcast: @forcast[:current] %>
+  <% end %>
+</div>
