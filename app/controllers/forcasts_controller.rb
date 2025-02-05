@@ -1,5 +1,6 @@
 class ForcastsController < ApplicationController
   def show
+    # NOTE: Not ideal as it uses the cache as a sort of persistance layer, instead of just a cache.
     @forcast = Rails.cache.fetch(params[:id])
   end
 
@@ -8,6 +9,7 @@ class ForcastsController < ApplicationController
 
   # POST /forcasts or /forcasts.json
   def create
+    # TODO: Add better error checking and messaging of user. This assumes the geolocation will be a success.
     @geolocation = Geocoder.search(forcast_params[:address]).first
     forcast_cache_key = "#{@geolocation.country_code}-#{@geolocation.postal_code}"
     forcast_cache_exist = Rails.cache.exist?(forcast_cache_key)
