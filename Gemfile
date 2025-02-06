@@ -39,7 +39,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 
 group :development, :test do
-  gem 'rspec-rails', '~> 7.0.0'
+  gem 'rspec-rails', '~> 7.1.0'
   # Support for system tests
   gem 'capybara'
   # Allows stubbing network calls in tests
