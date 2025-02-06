@@ -7,25 +7,35 @@ This app requires ruby 3.2 due to the use of the newly introduced Data object, h
 
 ## Setup
 Set api key required for openweather API
+
 `rails credentials:edit`
+
 Add:
+
 `openweather_api_key: api_key_here`
-The api key can be obtained after signing up on:
-https://openweathermap.org
-and then subscribing to the One Call API plan here:
-https://openweathermap.org/price
+
+The api key can be obtained after signing up on: https://openweathermap.org
+
+and then subscribing to the One Call API plan here: https://openweathermap.org/price
+
 This plan is free up to 1,000 API calls a day, so perfect for testing.
 
 `bundle install`
+
 Enable caching locally:
+
 `rails dev:cache`
 
 Run server
+
 `rails server`
+
 visit localhost:3000
 
 Run specs
+
 `rspec`
+
 The specs are all stubbed out so they don't hit the geolocation or weather forcasting service.
 
 As there is currently no use of javascript in the app, the system tests all use rack-test so they don't require any selenium browser drivers.
