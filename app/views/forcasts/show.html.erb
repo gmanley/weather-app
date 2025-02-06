@@ -1,13 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
+<%= link_to('Lookup Different Forcast', '/') %>
 <div>
   <h1>Forcast</h1>
   <h2>Current</h2>
   <%= @forcast[:current].date_time_display %>
   <%= render 'forcast', forcast: @forcast[:current] %>
+  <hr>
   <h2>Hourly</h2>
   <% @forcast[:hourly].take(8).each do |hourly_forcast| %>
-    <%= hourly_forcast.date_time_display %>
-    <%= render 'forcast', forcast: @forcast[:current] %>
+    <strong><%= hourly_forcast.date_time_display %></strong>
+    <%= render 'forcast', forcast: hourly_forcast %>
+    <hr>
   <% end %>
 </div>
