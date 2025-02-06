@@ -1,24 +1,5 @@
 class WeatherService
-  # NOTE: Data is a new to Ruby 3.2. It's basicly struct but immutable and also supports keyword
-  # args on initialization.
-  class ForcastData < Data.define(:date_time, :temperature, :feels_like, :wind_speed, :humidity, :description)
-    # Mixing presention logic a bit with this. Ideally this model object should just represent
-    # the data and then there might be a presenter model for the view that does this but this
-    # is fine for now.
-    def date_time_display
-      date_time.strftime("%a %I:%M %P")
-    end
-
-    def description_display
-      description.titleize
-    end
-
-    # Also this is hardcoded, as the API call is hardcoded to 'Imperial'
-    # right now as well. Could be changed down the line to also support metric.
-    def temperature_unit
-      'F'.freeze
-    end
-  end
+  class APIError < StandardError; end
 
   attr_reader :latitude, :longitude
 
@@ -49,16 +30,19 @@ class WeatherService
       units: 'imperial',
     })
 
+    unless response.success?
+      raise APIError, "API request failed: status code #{response.status}"
+    end
+
     body = response.body
-    current = body&.dig('current')
-
-    # TODO: Better error checking
-    raise 'Request for weather failed' unless body && current
-
-    {
-      current: parse_forcast_event(current),
-      hourly: body['hourly'].map { |d| parse_forcast_event(d) }
-    }
+    if body.present? && body['current'].present?
+      {
+        current: parse_forcast_event(body['current']),
+        hourly: body['hourly'].map { |d| parse_forcast_event(d) }
+      }
+    else
+      raise APIError, 'API request failed: response body invalid'
+    end
   end
 
   private
